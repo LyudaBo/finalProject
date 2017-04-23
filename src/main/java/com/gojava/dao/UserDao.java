@@ -1,6 +1,8 @@
 package com.gojava.dao;
 
-public interface UserDao {
+import com.gojava.model.User;
+
+public interface UserDao<T extends User> extends DAO<T> {
     //Зарегистрировать пользователя
     //Редактировать данные пользователя
     //Удалить пользователя
