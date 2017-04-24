@@ -1,12 +1,8 @@
 package com.gojava.dao;
 
-import java.util.Set;
+import com.gojava.model.Room;
 
-public interface RoomDao<T>{
+public interface RoomDao<T extends Room> extends DAO<T>{
 
-	void add(T entity);
-	void update(T entity);
-	void delete(T entity);
-	T find(long id);
-	Set<T> all();
+
 }

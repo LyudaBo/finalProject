@@ -19,7 +19,7 @@ public class Room implements Serializable {
 	
 	private long id;
 	private int number;
-	private boolean framed;
+	private boolean available;
 	private boolean delete;
 	private long hotel;
 
@@ -39,12 +39,12 @@ public class Room implements Serializable {
 		this.number = number;
 	}
 	
-	public boolean isFramed() {
-		return framed;
+	public boolean isAvailable() {
+		return available;
 	}
 	
-	public void setFramed(boolean framed) {
-		this.framed = framed;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 	
 	public boolean isDelete() {
@@ -68,7 +68,7 @@ public class Room implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (delete ? 1231 : 1237);
-		result = prime * result + (framed ? 1231 : 1237);
+		result = prime * result + (available ? 1231 : 1237);
 		result = prime * result + (int) (hotel ^ (hotel >>> 32));
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + number;
@@ -86,7 +86,7 @@ public class Room implements Serializable {
 		Room other = (Room) obj;
 		if (delete != other.delete)
 			return false;
-		if (framed != other.framed)
+		if (available != other.available)
 			return false;
 		if (hotel != other.hotel)
 			return false;
@@ -99,7 +99,7 @@ public class Room implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", number=" + number + ", framed=" + framed + ", delete=" + delete + ", hotel="
+		return "Room [id=" + id + ", number=" + number + ", available=" + available + ", delete=" + delete + ", hotel="
 				+ hotel + "]";
 	}
 	

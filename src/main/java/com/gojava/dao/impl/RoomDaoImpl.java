@@ -10,46 +10,46 @@ import com.gojava.model.Room;
 
 public class RoomDaoImpl implements RoomDao<Room> {
 	
-	private Set<Room> repositiryRooms;
+	private Set<Room> repositoryRooms;
 	private final String FILE_NAME = "rooms.db";
 
 	public RoomDaoImpl() {
-		repositiryRooms = new LinkedHashSet<>();
+		repositoryRooms = new LinkedHashSet<>();
 	}
 
 	@Override
 	public void add(Room entity) {
-		repositiryRooms = all();
-		repositiryRooms.add(entity);
-		UtilsFile.writeFiule(FILE_NAME, repositiryRooms);
+		repositoryRooms = getAll();
+		repositoryRooms.add(entity);
+		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
 	}
 
 	@Override
 	public void update(Room entity) {
-		repositiryRooms = all();
-		Room room = find(entity.getId());
-		repositiryRooms.remove(room);
-		repositiryRooms.add(entity);
-		UtilsFile.writeFiule(FILE_NAME, repositiryRooms);
+		repositoryRooms = getAll();
+		Room room = findById(entity.getId());
+		repositoryRooms.remove(room);
+		repositoryRooms.add(entity);
+		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
 	}
 
 	@Override
 	public void delete(Room entity) {
 		entity.setDelete(true);
 		update(entity);
-		UtilsFile.writeFiule(FILE_NAME, repositiryRooms);
+		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
 	}
 
 	@Override
-	public Room find(long id) {
-		Optional<Room> room1 = all().stream().filter(room -> room.getId() == id ).findFirst();
+	public Room findById(long id) {
+		Optional<Room> room1 = getAll().stream().filter(room -> room.getId() == id ).findFirst();
 		return room1.get();
 	}
 
 	@Override
-	public Set<Room> all() {
-		repositiryRooms = UtilsFile.readFiule(FILE_NAME);
-		return repositiryRooms;
+	public Set<Room> getAll() {
+		repositoryRooms = UtilsFile.readFile(FILE_NAME);
+		return repositoryRooms;
 	}
 	
 	

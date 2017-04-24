@@ -26,7 +26,7 @@ public class UtilsFile {
 		return file;
 	}
 	
-	public static <T> void writeFiule(String fileName, Set<T> values){
+	public static <T> void writeFile(String fileName, Set<T> values){
 		try {
 			FileOutputStream fos = new FileOutputStream(checkFile(fileName));
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
