@@ -4,21 +4,22 @@ import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
-public interface HotelDao<T> {
+public interface HotelDao {
 
     //Добавить отель
-    void addHotel(T hotel);
+    Hotel addHotel(Hotel hotel);
 
     //Редактировать данные отеля
-    void update(T hotel);
+    Hotel editHotel(Hotel hotel);
 
     //Удалить отель
-    boolean deleteHotel(T hotel);
+    boolean deleteHotel(Hotel hotel);
 
     //Добавить комнату в отель
     //Удалить комнату из отеля
     //Поиск отеля по имени
     //Поиск отеля по городу
+
     //Поиск комнаты по отелю
     Room findRoomByHotel(Hotel hotel);
 
