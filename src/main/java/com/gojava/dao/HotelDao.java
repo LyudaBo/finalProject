@@ -20,6 +20,7 @@ public interface HotelDao {
     //Поиск отеля по имени
     //Поиск отеля по городу
 
+
     //Поиск комнаты по отелю
     Room findRoomByHotel(Hotel hotel);
 
