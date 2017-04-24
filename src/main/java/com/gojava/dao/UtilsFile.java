@@ -1,10 +1,15 @@
 package com.gojava.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class UtilsFile {
-	
 	
 	private UtilsFile(){
 	}
@@ -20,5 +25,32 @@ public class UtilsFile {
 		}
 		return file;
 	}
+	
+	public static <T> void writeFiule(String fileName, Set<T> values){
+		try {
+			FileOutputStream fos = new FileOutputStream(checkFile(fileName));
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(values);
+			oos.flush();
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static <T> Set<T>  readFiule(String fileName){
+		try {
+			Set<T> result = new LinkedHashSet<>();
+			FileInputStream fis = new FileInputStream(checkFile(fileName));
+			ObjectInputStream oin = new ObjectInputStream(fis);
+			result = (Set<T>) oin.readObject();
+			oin.close();
+			return result;
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
 }
