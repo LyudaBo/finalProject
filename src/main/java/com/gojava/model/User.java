@@ -1,6 +1,8 @@
 package com.gojava.model;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Set;
  * @version 1.0
  */
 
-public class User implements Serializable {
+public class User implements Serializable, WithId {
 	
 	/**
 	 * 
@@ -23,7 +25,16 @@ public class User implements Serializable {
 	private String login;
 	private String password;
 	private Set<Room> rooms;
-	
+
+	public User(String firstName, String lastName, String login, String password) {
+		id = IdGenerator.getRandomId();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+		this.password = password;
+		rooms = Collections.EMPTY_SET;
+	}
+
 	public long getId() {
 		return id;
 	}
