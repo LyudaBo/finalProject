@@ -22,7 +22,14 @@ public class Hotel implements Serializable {
 	private String name;
 	private Set<Room> rooms;
 	private String city;
-	
+
+	public Hotel(long id, String name, Set<Room> rooms, String city) {
+		this.id = id;
+		this.name = name;
+		this.rooms = rooms;
+		this.city = city;
+	}
+
 	public long getId() {
 		return id;
 	}
