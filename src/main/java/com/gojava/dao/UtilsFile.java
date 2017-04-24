@@ -38,7 +38,7 @@ public class UtilsFile {
 		}
 	}
 	
-	public static <T> Set<T>  readFiule(String fileName){
+	public static <T> Set<T>  readFile(String fileName){
 		try {
 			Set<T> result = new LinkedHashSet<>();
 			FileInputStream fis = new FileInputStream(checkFile(fileName));
