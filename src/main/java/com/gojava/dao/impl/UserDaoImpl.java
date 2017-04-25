@@ -1,4 +1,13 @@
 package com.gojava.dao.impl;
 
-public class UserDaoImpl {
+import com.gojava.dao.AbstractDao;
+import com.gojava.model.User;
+
+
+public class UserDaoImpl extends AbstractDao<User> {
+
+
+    public UserDaoImpl(String file_name) {
+        super(file_name);
+    }
 }
