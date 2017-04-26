@@ -4,6 +4,8 @@ import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
+import java.util.Set;
+
 public interface HotelService {
 
     Hotel addHotel(Hotel hotel);
@@ -15,4 +17,6 @@ public interface HotelService {
     Room findRoomByHotel(Hotel hotel);
 
     boolean bookRoom(Room room, User user);
+
+    Set<Hotel> listHotels();
 }

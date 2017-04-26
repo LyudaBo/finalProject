@@ -4,6 +4,8 @@ import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
+import java.util.Set;
+
 public interface HotelDao {
 
     //Добавить отель
@@ -29,4 +31,6 @@ public interface HotelDao {
 
     //Отмена бронирования комнаты
     boolean removeBookRoom(Room room);
+
+    Set<Hotel> listHotels();
 }
