@@ -1,11 +1,15 @@
 package com.gojava;
 
-import com.gojava.controller.HotelController;
-import com.gojava.model.Hotel;
+import com.gojava.controller.interactive.InteractiveController;
+import com.gojava.model.Interactive;
 
 public class Main {
     public static void main(String[] args) {
-        //Hotel hotel = new Hotel();
-        //new HotelController().findRoomByHotel(hotel);
+       try {
+           Interactive interactiveController = new InteractiveController();
+           interactiveController.showMenu();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 }

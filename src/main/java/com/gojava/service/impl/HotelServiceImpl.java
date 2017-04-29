@@ -7,6 +7,8 @@ import com.gojava.model.Room;
 import com.gojava.model.User;
 import com.gojava.service.HotelService;
 
+import java.util.Set;
+
 public class HotelServiceImpl implements HotelService {
 
     private HotelDao hotelDao = new HotelDaoImpl();
@@ -37,4 +39,8 @@ public class HotelServiceImpl implements HotelService {
 		return false;
 	}
 
+    @Override
+    public Set<Hotel> listHotels() {
+        return hotelDao.listHotels();
+    }
 }

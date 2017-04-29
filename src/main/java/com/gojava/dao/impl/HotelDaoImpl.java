@@ -51,4 +51,9 @@ public class HotelDaoImpl implements HotelDao {
     public boolean removeBookRoom(Room room) {
         return false;
     }
+
+    @Override
+    public Set<Hotel> listHotels() {
+        return hotels;
+    }
 }
