@@ -1,13 +1,31 @@
 package com.gojava.dao.impl;
 
-import com.gojava.dao.AbstractDao;
+import com.gojava.model.Crud;
 import com.gojava.model.User;
 
+import java.util.Set;
 
-public class UserDaoImpl extends AbstractDao<User> {
+public class UserDaoImpl implements Crud<User> {
 
+    @Override
+    public User add(User entity) {
+        DataStorage.getInstance().getUsers().add(entity);
+        return entity;
+    }
 
-    public UserDaoImpl(String file_name) {
-        super(file_name);
+    @Override
+    public User update(User entity) {
+        //todo fixed
+        return null;
+    }
+
+    @Override
+    public boolean delete(User entity) {
+        return DataStorage.getInstance().getUsers().remove(entity);
+    }
+
+    @Override
+    public Set<User> getAll() {
+        return DataStorage.getInstance().getUsers();
     }
 }

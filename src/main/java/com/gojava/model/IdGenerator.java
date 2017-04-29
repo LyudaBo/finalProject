@@ -9,10 +9,6 @@ import java.util.UUID;
 public class IdGenerator {
 
     public static long getRandomId(){
-        return new Random().nextLong();
-    }
-
-    public static UUID getRandomUUID(){
-        return UUID.randomUUID();
+        return new Random().nextInt(10000);
     }
 }

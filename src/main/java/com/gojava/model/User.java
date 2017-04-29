@@ -2,6 +2,7 @@ package com.gojava.model;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -22,27 +23,21 @@ public class User implements Serializable, WithId {
 	private long id;
 	private String firstName;
 	private String lastName;
-	private String login;
-	private String password;
-	private Set<Room> rooms;
+		private Set<Room> rooms;
 
-	public User(String firstName, String lastName, String login, String password) {
+	public User(String firstName, String lastName) {
 		id = IdGenerator.getRandomId();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.login = login;
-		this.password = password;
-		rooms = Collections.EMPTY_SET;
+		rooms = new HashSet<>();
 	}
+
+
 
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -58,23 +53,7 @@ public class User implements Serializable, WithId {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
+
 	public Set<Room> getRooms() {
 		return rooms;
 	}
@@ -84,62 +63,34 @@ public class User implements Serializable, WithId {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		User user = (User) o;
+
+		if (id != user.id) return false;
+		if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+		if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+		return rooms != null ? rooms.equals(user.rooms) : user.rooms == null;
+	}
+
+	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((rooms == null) ? 0 : rooms.hashCode());
+		int result = (int) (id ^ (id >>> 32));
+		result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+		result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+		result = 31 * result + (rooms != null ? rooms.hashCode() : 0);
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id != other.id)
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (rooms == null) {
-			if (other.rooms != null)
-				return false;
-		} else if (!rooms.equals(other.rooms))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", login=" + login
-				+ ", password=" + password + ", rooms=" + rooms + "]";
+		return "User{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", rooms=" + rooms +
+				'}';
 	}
-	
-	
 }

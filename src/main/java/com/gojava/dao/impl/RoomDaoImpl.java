@@ -1,14 +1,13 @@
 package com.gojava.dao.impl;
 
+import com.gojava.dao.RoomCrud;
+import com.gojava.model.Room;
+import com.gojava.model.User;
+
 import java.util.LinkedHashSet;
-import java.util.Optional;
 import java.util.Set;
 
-import com.gojava.dao.RoomDao;
-import com.gojava.dao.UtilsFile;
-import com.gojava.model.Room;
-
-public class RoomDaoImpl implements RoomDao<Room> {
+public class RoomDaoImpl implements RoomCrud<Room> {
 	
 	private Set<Room> repositoryRooms;
 	private final String FILE_NAME = "rooms.db";
@@ -18,39 +17,32 @@ public class RoomDaoImpl implements RoomDao<Room> {
 	}
 
 	@Override
-	public void add(Room entity) {
-		repositoryRooms = getAll();
-		repositoryRooms.add(entity);
-		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
+	public Room add(Room entity) {
+		return null;
 	}
 
 	@Override
-	public void update(Room entity) {
-		repositoryRooms = getAll();
-		Room room = findById(entity.getId());
-		repositoryRooms.remove(room);
-		repositoryRooms.add(entity);
-		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
+	public Room update(Room entity) {
+		return null;
 	}
 
 	@Override
-	public void delete(Room entity) {
-		entity.setDelete(true);
-		update(entity);
-		UtilsFile.writeFile(FILE_NAME, repositoryRooms);
-	}
-
-	@Override
-	public Room findById(long id) {
-		Optional<Room> room1 = getAll().stream().filter(room -> room.getId() == id ).findFirst();
-		return room1.get();
+	public boolean delete(Room entity) {
+		return false;
 	}
 
 	@Override
 	public Set<Room> getAll() {
-		repositoryRooms = UtilsFile.readFile(FILE_NAME);
-		return repositoryRooms;
+		return null;
 	}
-	
-	
+
+	@Override
+	public boolean bookUser(Room room, User user) {
+		return false;
+	}
+
+	@Override
+	public boolean unBookUser(Room room) {
+		return false;
+	}
 }
