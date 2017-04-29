@@ -1,10 +1,11 @@
 package com.gojava.controller.interactive;
 
-import com.gojava.controller.HotelController;
+import com.gojava.dao.HotelCrud;
 import com.gojava.model.Hotel;
 import com.gojava.model.IdGenerator;
 import com.gojava.model.Interactive;
 import com.gojava.model.Room;
+import com.gojava.service.impl.HotelServiceImpl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ import static com.gojava.dao.Utils.*;
 public class HotelInteractive implements Interactive {
 
     private Interactive interactive;
-    private HotelController hotelController = new HotelController();
+    private HotelCrud<Hotel> hotelController = new HotelServiceImpl();
 
     public HotelInteractive(Interactive interactive) {
         this.interactive = interactive;
@@ -75,7 +76,7 @@ public class HotelInteractive implements Interactive {
                 city
         );
 
-        Hotel addedHotel = hotelController.addHotel(hotel);
+        Hotel addedHotel = hotelController.add(hotel);
         System.out.println("added new hotel: " + addedHotel.toString());
 
         backToMainMenu();
@@ -92,12 +93,12 @@ public class HotelInteractive implements Interactive {
     }
 
     public void listHotels() {
-        Set<Hotel> hotels = hotelController.getHotels();
+        Set<Hotel> hotels = hotelController.getAll();
 
         if (hotels.isEmpty()) {
             System.out.println("no hotels");
         } else {
-            for (Hotel hotel : hotelController.getHotels()) {
+            for (Hotel hotel : hotelController.getAll()) {
                 System.out.println("hotel: " + hotel.toString());
             }
         }

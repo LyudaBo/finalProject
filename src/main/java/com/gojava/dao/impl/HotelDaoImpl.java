@@ -1,33 +1,30 @@
 package com.gojava.dao.impl;
 
-import com.gojava.dao.HotelDao;
+import com.gojava.dao.HotelCrud;
 import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
-import java.util.HashSet;
 import java.util.Set;
 
-public class HotelDaoImpl implements HotelDao {
-
-    private Set<Hotel> hotels = new HashSet<>();
+public class HotelDaoImpl implements HotelCrud<Hotel> {
 
     @Override
-    public Hotel addHotel(Hotel hotel) {
+    public Hotel add(Hotel hotel) {
         if (hotel == null) {
             throw new RuntimeException("Hotel can't be null");
         }
-        if (hotels.contains(hotel)) {
-           return hotels.stream().filter(v -> v.equals(hotel)).findFirst().get();
+        if (DataStorage.getInstance().getHotels().contains(hotel)) {
+           return DataStorage.getInstance().getHotels().stream().filter(v -> v.equals(hotel)).findFirst().get();
         } else {
-            hotels.add(hotel);
+            DataStorage.getInstance().getHotels().add(hotel);
             return hotel;
         }
     }
 
     @Override
-    public Hotel editHotel(Hotel hotel) {
-        hotels.forEach(s -> {
+    public Hotel update(Hotel hotel) {
+        DataStorage.getInstance().getHotels().forEach(s -> {
           if (s.getId() == hotel.getId()){
               s.rewriteData(hotel);
             }
@@ -36,12 +33,8 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public boolean deleteHotel(Hotel hotel) {
-        return hotels.remove(hotel);
-    }
-
-    public Room findRoomByHotel(Hotel hotel) {
-        return null;
+    public boolean delete(Hotel hotel) {
+        return DataStorage.getInstance().getHotels().remove(hotel);
     }
 
     public boolean bookRoom(Room room, User user) {
@@ -53,7 +46,8 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public Set<Hotel> listHotels() {
-        return hotels;
+    public Set<Hotel> getAll() {
+        return DataStorage.getInstance().getHotels();
     }
+
 }

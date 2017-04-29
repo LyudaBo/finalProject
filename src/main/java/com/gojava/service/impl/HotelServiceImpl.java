@@ -1,46 +1,45 @@
 package com.gojava.service.impl;
 
-import com.gojava.dao.HotelDao;
+import com.gojava.dao.HotelCrud;
 import com.gojava.dao.impl.HotelDaoImpl;
 import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
-import com.gojava.service.HotelService;
 
 import java.util.Set;
 
-public class HotelServiceImpl implements HotelService {
+public class HotelServiceImpl implements HotelCrud<Hotel> {
 
-    private HotelDao hotelDao = new HotelDaoImpl();
+    private HotelCrud<Hotel> hotelDao = new HotelDaoImpl();
 
     @Override
-    public Hotel addHotel(Hotel hotel) {
-        return hotelDao.addHotel(hotel);
+    public Hotel add(Hotel hotel) {
+        return hotelDao.add(hotel);
     }
 
     @Override
-    public Hotel editHotel(Hotel hotel) {
-        return hotelDao.editHotel(hotel);
+    public Hotel update(Hotel hotel) {
+        return hotelDao.update(hotel);
     }
 
     @Override
-    public boolean deleteHotel(Hotel hotel) {
-        return hotelDao.deleteHotel(hotel);
+    public boolean delete(Hotel hotel) {
+        return hotelDao.delete(hotel);
     }
 
     @Override
-    public Room findRoomByHotel(Hotel hotel) {
-        return hotelDao.findRoomByHotel(hotel);
+    public Set<Hotel> getAll() {
+        return hotelDao.getAll();
     }
 
-	@Override
+    @Override
+    public boolean removeBookRoom(Room room) {
+        return false;
+    }
+
+    @Override
 	public boolean bookRoom(Room room, User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-    @Override
-    public Set<Hotel> listHotels() {
-        return hotelDao.listHotels();
-    }
 }
