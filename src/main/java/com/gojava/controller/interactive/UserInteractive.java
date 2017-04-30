@@ -22,6 +22,7 @@ public class UserInteractive implements Interactive {
     @Override
     public void showMenu() {
         printBorder();
+        //TODO rename
         System.out.println("1) create user");
         System.out.println("2) update user");
         System.out.println("3) delete user");
@@ -53,6 +54,7 @@ public class UserInteractive implements Interactive {
                     backToMainMenu();
                     break;
                 default:
+                    System.out.println("Incorrect input. Please try again");
                     showMenu();
 
             }
@@ -79,9 +81,10 @@ public class UserInteractive implements Interactive {
     }
 
     private void updateUser () {
-        showAllUsers();
 
+        showAllUsers();
         Long finalIdUser = enterUsersId();
+
         User userToUpdate = userService.getAll()
                 .stream()
                 .filter(user -> finalIdUser.equals(user.getId()))

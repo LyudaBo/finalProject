@@ -5,11 +5,11 @@ import com.gojava.model.Interactive;
 
 public class Main {
     public static void main(String[] args) {
-       try {
-           Interactive interactiveController = new InteractiveController();
-           interactiveController.showMenu();
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
+        try {
+            Interactive interactiveController = new InteractiveController();
+            interactiveController.showMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

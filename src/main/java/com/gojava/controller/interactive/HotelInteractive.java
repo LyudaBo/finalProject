@@ -86,6 +86,7 @@ public class HotelInteractive implements Interactive {
     }
 
     public void update() {
+        //TODO make it
         System.err.println("not ready yet");
         backToMainMenu();
     }

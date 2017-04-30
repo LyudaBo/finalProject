@@ -21,6 +21,7 @@ public class InteractiveController implements Interactive{
 
     @Override
     public void showMenu() {
+        //TODO check why pops up exception stack trace
         initializeDataStorage();
 
         printBorder();
