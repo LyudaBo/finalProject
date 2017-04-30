@@ -15,7 +15,7 @@ public class UserDaoImpl implements Crud<User> {
 
     @Override
     public User update(User entity) {
-        //todo fixed
+        //todo fi it
         return null;
     }
 

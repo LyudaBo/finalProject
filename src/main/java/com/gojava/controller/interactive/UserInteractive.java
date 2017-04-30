@@ -47,6 +47,7 @@ public class UserInteractive implements Interactive {
                     break;
                 case 4:
                     showAllUsers();
+                    showMenu();
                     break;
                 case 5:
                     backToMainMenu();
@@ -73,9 +74,8 @@ public class UserInteractive implements Interactive {
 
     private void showAllUsers(){
         Set<User> users = userService.getAll();
-        System.out.println("count: "+users.size());
+        System.out.println("Count of users: " + users.size());
         users.forEach(System.out::println);
-        showMenu();
     }
 
     private void updateUser () {

@@ -37,11 +37,11 @@ public class HotelDaoImpl implements HotelCrud<Hotel> {
         return DataStorage.getInstance().getHotels().remove(hotel);
     }
 
-    public boolean bookRoom(Room room, User user) {
+    public boolean bookRoom(Room aRoom, User user) {
         return false;
     }
 
-    public boolean removeBookRoom(Room room) {
+    public boolean removeBookRoom(Room aRoom) {
         return false;
     }
 

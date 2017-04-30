@@ -21,13 +21,7 @@ public class InteractiveController implements Interactive{
 
     @Override
     public void showMenu() {
-        DataStorage storage = fileManager.readData(FILE_NAME);
-        if (storage == null) {
-            DataStorage.getInstance();
-        } else {
-            DataStorage.getInstance().setHotels(storage.getHotels());
-            DataStorage.getInstance().setUsers(storage.getUsers());
-        }
+        initializeDataStorage();
 
         printBorder();
         System.out.println("1) Manage Hotels");
@@ -60,6 +54,16 @@ public class InteractiveController implements Interactive{
                     showMenu();
                     break;
             }
+        }
+    }
+
+    private void initializeDataStorage() {
+        DataStorage storage = fileManager.readData(FILE_NAME);
+        if (storage == null) {
+            DataStorage.getInstance();
+        } else {
+            DataStorage.getInstance().setHotels(storage.getHotels());
+            DataStorage.getInstance().setUsers(storage.getUsers());
         }
     }
 }

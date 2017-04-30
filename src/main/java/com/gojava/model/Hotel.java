@@ -20,13 +20,13 @@ public class Hotel implements Serializable {
 
     private long id;
     private String name;
-    private Set<Room> rooms;
+    private Set<Room> aRooms;
     private String city;
 
-    public Hotel(long id, String name, Set<Room> rooms, String city) {
+    public Hotel(long id, String name, Set<Room> aRooms, String city) {
         this.id = id;
         this.name = name;
-        this.rooms = rooms;
+        this.aRooms = aRooms;
         this.city = city;
     }
 
@@ -46,12 +46,12 @@ public class Hotel implements Serializable {
         this.name = name;
     }
 
-    public Set<Room> getRooms() {
-        return rooms;
+    public Set<Room> getaRooms() {
+        return aRooms;
     }
 
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
+    public void setaRooms(Set<Room> aRooms) {
+        this.aRooms = aRooms;
     }
 
     public String getCity() {
@@ -64,7 +64,7 @@ public class Hotel implements Serializable {
 
     public void rewriteData(Hotel hotel) {
         this.name = hotel.getName();
-        this.rooms = hotel.getRooms();
+        this.aRooms = hotel.getaRooms();
         this.city = hotel.getCity();
     }
 
@@ -75,7 +75,7 @@ public class Hotel implements Serializable {
         result = prime * result + ((city == null) ? 0 : city.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((rooms == null) ? 0 : rooms.hashCode());
+        result = prime * result + ((aRooms == null) ? 0 : aRooms.hashCode());
         return result;
     }
 
@@ -100,17 +100,17 @@ public class Hotel implements Serializable {
                 return false;
         } else if (!name.equals(other.name))
             return false;
-        if (rooms == null) {
-            if (other.rooms != null)
+        if (aRooms == null) {
+            if (other.aRooms != null)
                 return false;
-        } else if (!rooms.equals(other.rooms))
+        } else if (!aRooms.equals(other.aRooms))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Hotel [id=" + id + ", name=" + name + ", rooms=" + rooms + ", city=" + city + "]";
+        return "Hotel [id=" + id + ", name=" + name + ", aRooms=" + aRooms + ", city=" + city + "]";
     }
 
 

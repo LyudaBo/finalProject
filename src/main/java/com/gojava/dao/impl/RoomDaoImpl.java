@@ -37,12 +37,12 @@ public class RoomDaoImpl implements RoomCrud<Room> {
 	}
 
 	@Override
-	public boolean bookUser(Room room, User user) {
+	public boolean bookUser(Room aRoom, User user) {
 		return false;
 	}
 
 	@Override
-	public boolean unBookUser(Room room) {
+	public boolean unBookUser(Room aRoom) {
 		return false;
 	}
 }
