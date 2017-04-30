@@ -68,7 +68,7 @@ public class UserInteractive implements Interactive {
 
         User user = new User(name, lastName);
         userService.add(user);
-        System.out.println("user added");
+        System.out.println("user " + user + " added");
         showMenu();
     }
 
