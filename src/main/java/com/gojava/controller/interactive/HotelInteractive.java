@@ -35,7 +35,7 @@ public class HotelInteractive implements Interactive {
 
         if (selectedItem == null) {
             System.err.println("not correct entered data, try again");
-            interactive.showMenu();
+            showMenu();
         } else {
             switch (selectedItem) {
                 case 1:
@@ -50,8 +50,11 @@ public class HotelInteractive implements Interactive {
                 case 4:
                     listHotels();
                     break;
-                default:
+                case 5:
                     interactive.showMenu();
+                    break;
+                default:
+                    showMenu();
                     break;
             }
         }

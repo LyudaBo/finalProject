@@ -13,13 +13,13 @@ import java.util.Set;
  * @version 1.0
  */
 
-public class User implements Serializable, WithId {
-	
+public class User implements Serializable {
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private long id;
 	private String firstName;
 	private String lastName;
@@ -32,8 +32,6 @@ public class User implements Serializable, WithId {
 		rooms = new HashSet<>();
 	}
 
-
-
 	public long getId() {
 		return id;
 	}
@@ -41,15 +39,15 @@ public class User implements Serializable, WithId {
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -57,7 +55,7 @@ public class User implements Serializable, WithId {
 	public Set<Room> getRooms() {
 		return rooms;
 	}
-	
+
 	public void setRooms(Set<Room> rooms) {
 		this.rooms = rooms;
 	}
