@@ -52,6 +52,7 @@ public final class Utils {
     }
 
     public static <T> void writeFile(String fileName, T object) {
+        //TODO use try with resources
         try {
             File file = checkFile(fileName);
             FileOutputStream fos = new FileOutputStream(file);
@@ -65,6 +66,7 @@ public final class Utils {
     }
 
     public static <T extends DataStorage> T readFile(String fileName) {
+        //TODO use try with resources
         try {
             T result = null;
             if (new File(fileName).exists()) {

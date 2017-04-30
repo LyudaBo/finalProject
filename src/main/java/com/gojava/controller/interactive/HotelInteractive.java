@@ -39,16 +39,16 @@ public class HotelInteractive implements Interactive {
         } else {
             switch (selectedItem) {
                 case 1:
-                    addHotel();
+                    add();
                     break;
                 case 2:
-                    editHotel();
+                    update();
                     break;
                 case 3:
-                    deleteHotel();
+                    delete();
                     break;
                 case 4:
-                    listHotels();
+                    showAll();
                     break;
                 case 5:
                     interactive.showMenu();
@@ -64,7 +64,7 @@ public class HotelInteractive implements Interactive {
         interactive.showMenu();
     }
 
-    public void addHotel() {
+    public void add() {
         String name = provideStringInputStream("enter hotel name: ");
         String city = provideStringInputStream("enter hotel city: ");
         Set<Room> aRooms = new HashSet<>();
@@ -85,17 +85,17 @@ public class HotelInteractive implements Interactive {
         backToMainMenu();
     }
 
-    public void editHotel() {
+    public void update() {
         System.err.println("not ready yet");
         backToMainMenu();
     }
 
-    public void deleteHotel() {
+    public void delete() {
         System.err.println("not ready yet");
         backToMainMenu();
     }
 
-    public void listHotels() {
+    public void showAll() {
         Set<Hotel> hotels = hotelController.getAll();
 
         if (hotels.isEmpty()) {
@@ -106,6 +106,6 @@ public class HotelInteractive implements Interactive {
             }
         }
 
-        backToMainMenu();
+        showMenu();
     }
 }
