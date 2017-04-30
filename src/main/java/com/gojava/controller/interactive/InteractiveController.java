@@ -30,24 +30,36 @@ public class InteractiveController implements Interactive{
         }
 
         printBorder();
-        System.out.println("1) Manage Hotels(works only this)");
-        System.out.println("2) Manage Rooms");
+        System.out.println("1) Manage Hotels");
+        System.out.println("2) Manage Rooms(not ready yet)");
         System.out.println("3) Manage Users");
         System.out.println("4) Exit" );
         printBorder();
 
         Integer selectedItem = provideIntInputStream();
 
-        if (selectedItem != null && selectedItem == 1) {
-            hotelInteractive.showMenu();
-        } else if (selectedItem == 3) {
-            userInteractive.showMenu();
-        }else if(selectedItem == 4){
-            fileManager.writeData(DataStorage.getInstance(), FILE_NAME);
-            System.exit(0);
-        } else {
-            System.err.println("not ready yet");
+        if (selectedItem == null) {
+            System.err.println("not correct entered data, try again");
             showMenu();
+        } else {
+            switch (selectedItem) {
+                case 1:
+                    hotelInteractive.showMenu();
+                    break;
+                case 2:
+                    showMenu();
+                    break;
+                case 3:
+                    userInteractive.showMenu();
+                    break;
+                case 4:
+                    fileManager.writeData(DataStorage.getInstance(), FILE_NAME);
+                    System.exit(0);
+                    break;
+                default:
+                    showMenu();
+                    break;
+            }
         }
     }
 }
