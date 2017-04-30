@@ -43,7 +43,7 @@ public class UserInteractive implements Interactive {
                     updateUser();
                     break;
                 case 3:
-                    //delete
+                    deleteUser();
                     break;
                 case 4:
                     showAllUsers();
@@ -81,16 +81,7 @@ public class UserInteractive implements Interactive {
     private void updateUser () {
         showAllUsers();
 
-        Long idUser = null;
-
-        String idUserString = provideStringInputStream("Enter id of user: ");
-        if (idUserString == null){
-            showMenu();
-        }else {
-            idUser = Long.parseLong(idUserString);
-        }
-
-        Long finalIdUser = idUser;
+        Long finalIdUser = enterUsersId();
         User userToUpdate = userService.getAll()
                 .stream()
                 .filter(user -> finalIdUser.equals(user.getId()))
@@ -105,8 +96,40 @@ public class UserInteractive implements Interactive {
             String newLastName = provideStringInputStream("Enter new last name: ");
             userToUpdate.setFirstName(newFirstName);
             userToUpdate.setLastName(newLastName);
-            System.out.println("This user with " + idUser + " changed");
+            System.out.println("This user with " + finalIdUser + " changed");
         }
         showMenu();
+    }
+
+    private void deleteUser(){
+        showAllUsers();
+
+        Long finalIdUser = enterUsersId();
+        User userToDelete = userService.getAll()
+                .stream()
+                .filter(user -> finalIdUser.equals(user.getId()))
+                .findFirst()
+                .get();
+
+        if (userToDelete == null){
+            System.out.println("User with this id has't been found");
+            showMenu();
+        } else {
+            userService.delete(userToDelete);
+        }
+        showMenu();
+
+    }
+
+    private long enterUsersId(){
+        Long idUser = null;
+
+        String idUserString = provideStringInputStream("Enter id of user: ");
+        if (idUserString == null){
+            showMenu();
+        }else {
+            idUser = Long.parseLong(idUserString);
+        }
+        return idUser;
     }
 }
