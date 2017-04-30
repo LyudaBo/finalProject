@@ -54,7 +54,6 @@ public final class Utils {
     public static <T> void writeFile(String fileName, T object) {
         try {
             File file = checkFile(fileName);
-            System.out.println(file);
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(object);

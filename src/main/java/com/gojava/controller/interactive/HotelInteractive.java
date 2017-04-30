@@ -67,15 +67,15 @@ public class HotelInteractive implements Interactive {
     public void addHotel() {
         String name = provideStringInputStream("enter hotel name: ");
         String city = provideStringInputStream("enter hotel city: ");
-        Set<Room> rooms = new HashSet<>();
+        Set<Room> aRooms = new HashSet<>();
         for (int i = 0; i < 10; i++) {
-            rooms.add(new Room());
+            aRooms.add(new Room());
         }
 
         Hotel hotel = new Hotel(
                 IdGenerator.getRandomId(),
                 name,
-                rooms,
+                aRooms,
                 city
         );
 

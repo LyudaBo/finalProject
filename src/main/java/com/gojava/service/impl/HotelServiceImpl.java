@@ -33,12 +33,12 @@ public class HotelServiceImpl implements HotelCrud<Hotel> {
     }
 
     @Override
-    public boolean removeBookRoom(Room room) {
+    public boolean removeBookRoom(Room aRoom) {
         return false;
     }
 
     @Override
-	public boolean bookRoom(Room room, User user) {
+	public boolean bookRoom(Room aRoom, User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}
