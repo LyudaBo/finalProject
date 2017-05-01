@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Interactive mainMenu = new MainMenu();
-            mainMenu.showMenu();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.startGame();
         } catch (Exception e) {
             e.printStackTrace();
         }
