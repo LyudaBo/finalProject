@@ -4,15 +4,17 @@ import com.gojava.model.Hotel;
 import com.gojava.model.User;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class DataStorage implements Serializable {
 
     private static DataStorage INSTANCE;
 
-    private Set<Hotel> hotels = new HashSet<>();
-    private Set<User> users = new HashSet<>();
+    private Map<Long, Hotel> hotels = new HashMap<>();
+    private Map<Long, User> users = new HashMap<>();
 
 
     private DataStorage() {
@@ -25,19 +27,19 @@ public class DataStorage implements Serializable {
         return INSTANCE;
     }
 
-    public Set<Hotel> getHotels() {
+    public Map<Long, Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(Set<Hotel> hotels) {
+    public void setHotels(Map<Long, Hotel> hotels) {
         this.hotels = hotels;
     }
 
-    public Set<User> getUsers() {
+    public Map<Long, User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Map<Long, User> users) {
         this.users = users;
     }
 }

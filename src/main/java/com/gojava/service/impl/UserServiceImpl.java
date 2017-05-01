@@ -4,6 +4,7 @@ import com.gojava.dao.impl.UserDaoImpl;
 import com.gojava.model.Crud;
 import com.gojava.model.User;
 
+import java.util.Map;
 import java.util.Set;
 
 public class UserServiceImpl implements Crud<User> {
@@ -11,8 +12,8 @@ public class UserServiceImpl implements Crud<User> {
     Crud<User> userDaoImpl = new UserDaoImpl();
 
     @Override
-    public User add(User entity) {
-        return userDaoImpl.add(entity);
+    public User create(User entity) {
+        return userDaoImpl.create(entity);
     }
 
     @Override
@@ -21,12 +22,16 @@ public class UserServiceImpl implements Crud<User> {
     }
 
     @Override
-    public boolean delete(User entity) {
+    public User delete(User entity) {
        return userDaoImpl.delete(entity);
     }
 
     @Override
-    public Set<User> getAll() {
+    public Map<Long, User> getAll() {
         return userDaoImpl.getAll();
+    }
+
+    public User findById(Long id){
+        return userDaoImpl.getAll().get(id);
     }
 }

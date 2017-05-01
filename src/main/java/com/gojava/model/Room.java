@@ -10,97 +10,66 @@ import java.io.Serializable;
  */
 
 
-public class Room implements Serializable {
-	
-	/**
-	 * 
-	 */
+public class Room implements Serializable, HaveId {
+
 	private static final long serialVersionUID = 1L;
 	
 	private long id;
-	private int number;
+	private String hotelName;
 	private boolean available;
-	private boolean delete;
-	private long hotel;
+
+	public Room(String hotelName) {
+		id = IdGenerator.getRandomId();
+		this.hotelName = hotelName;
+		available = true;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
+
+	public String getHotelName() {
+		return hotelName;
 	}
-	
-	public int getNumber() {
-		return number;
-	}
-	
-	public void setNumber(int number) {
-		this.number = number;
-	}
-	
+
 	public boolean isAvailable() {
 		return available;
 	}
-	
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-	
-	public boolean isDelete() {
-		return delete;
-	}
-	
-	public void setDelete(boolean delete) {
-		this.delete = delete;
-	}
-	
-	public long getHotel() {
-		return hotel;
-	}
 
-	public void setHotel(long hotel) {
-		this.hotel = hotel;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Room)) return false;
+
+		Room room = (Room) o;
+
+		if (getId() != room.getId()) return false;
+		if (isAvailable() != room.isAvailable()) return false;
+		return getHotelName() != null ? getHotelName().equals(room.getHotelName()) : room.getHotelName() == null;
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (delete ? 1231 : 1237);
-		result = prime * result + (available ? 1231 : 1237);
-		result = prime * result + (int) (hotel ^ (hotel >>> 32));
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + number;
+		int result = (int) (getId() ^ (getId() >>> 32));
+		result = 31 * result + (getHotelName() != null ? getHotelName().hashCode() : 0);
+		result = 31 * result + (isAvailable() ? 1 : 0);
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Room other = (Room) obj;
-		if (delete != other.delete)
-			return false;
-		if (available != other.available)
-			return false;
-		if (hotel != other.hotel)
-			return false;
-		if (id != other.id)
-			return false;
-		if (number != other.number)
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "Room [id=" + id + ", number=" + number + ", available=" + available + ", delete=" + delete + ", hotel="
-				+ hotel + "]";
+		return "Room{" +
+				"id=" + id +
+				", hotelName='" + hotelName + '\'' +
+				", available=" + available +
+				'}';
 	}
-	
 }

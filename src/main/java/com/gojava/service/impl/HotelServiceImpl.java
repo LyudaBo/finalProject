@@ -6,6 +6,7 @@ import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
+import java.util.Map;
 import java.util.Set;
 
 public class HotelServiceImpl implements HotelCrud<Hotel> {
@@ -13,8 +14,8 @@ public class HotelServiceImpl implements HotelCrud<Hotel> {
     private HotelCrud<Hotel> hotelDao = new HotelDaoImpl();
 
     @Override
-    public Hotel add(Hotel hotel) {
-        return hotelDao.add(hotel);
+    public Hotel create(Hotel hotel) {
+        return hotelDao.create(hotel);
     }
 
     @Override
@@ -23,23 +24,13 @@ public class HotelServiceImpl implements HotelCrud<Hotel> {
     }
 
     @Override
-    public boolean delete(Hotel hotel) {
+    public Hotel delete(Hotel hotel) {
         return hotelDao.delete(hotel);
     }
 
     @Override
-    public Set<Hotel> getAll() {
-        return hotelDao.getAll();
+    public Map<Long, Hotel> getAll() {
+        hotelDao.getAll();
+        return null;
     }
-
-    @Override
-    public boolean removeBookRoom(Room aRoom) {
-        return false;
-    }
-
-    @Override
-	public boolean bookRoom(Room aRoom, User user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

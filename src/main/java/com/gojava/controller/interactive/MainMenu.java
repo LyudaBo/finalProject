@@ -5,16 +5,15 @@ import com.gojava.model.Interactive;
 import com.gojava.service.FileManager;
 import com.gojava.service.impl.FileManagerImpl;
 
-import java.io.File;
-
 import static com.gojava.dao.Utils.printBorder;
 import static com.gojava.dao.Utils.provideIntInputStream;
 
-public class InteractiveController implements Interactive{
+public class MainMenu implements Interactive{
 
     private final static String FILE_NAME = "file.txt";
-    private HotelInteractive hotelInteractive = new HotelInteractive(this);
-    private UserInteractive userInteractive = new UserInteractive(this);
+    private HotelsMenu hotelInteractive = new HotelsMenu(this);
+    private UsersMenu usersMenu = new UsersMenu(this);
+    private BookingMenu bookingMenu = new BookingMenu(this);
 
     FileManager fileManager = new FileManagerImpl();
 
@@ -25,9 +24,10 @@ public class InteractiveController implements Interactive{
         initializeDataStorage();
 
         printBorder();
-        System.out.println("1) Manage Hotels");
-        System.out.println("2) Manage Rooms(not ready yet)");
-        System.out.println("3) Manage Users");
+        System.out.println("Main Menu");
+        System.out.println("1) Hotels menu");
+        System.out.println("2) Users Menu");
+        System.out.println("3) Booking menu");
         System.out.println("4) Exit" );
         printBorder();
 
@@ -42,12 +42,10 @@ public class InteractiveController implements Interactive{
                     hotelInteractive.showMenu();
                     break;
                 case 2:
-                    //TODO make roomInteractive
-                    showMenu();
+                    usersMenu.showMenu();
                     break;
                 case 3:
-                    userInteractive.showMenu();
-                    break;
+                    bookingMenu.showMenu();
                 case 4:
                     fileManager.writeData(DataStorage.getInstance(), FILE_NAME);
                     System.exit(0);

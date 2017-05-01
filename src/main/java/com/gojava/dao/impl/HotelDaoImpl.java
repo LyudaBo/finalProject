@@ -5,48 +5,37 @@ import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
+import java.util.Map;
 import java.util.Set;
 
 public class HotelDaoImpl implements HotelCrud<Hotel> {
 
     @Override
-    public Hotel add(Hotel hotel) {
+    public Hotel create(Hotel hotel) {
+
         if (hotel == null) {
             throw new RuntimeException("Hotel can't be null");
-        }
-        if (DataStorage.getInstance().getHotels().contains(hotel)) {
-           return DataStorage.getInstance().getHotels().stream().filter(v -> v.equals(hotel)).findFirst().get();
         } else {
-            DataStorage.getInstance().getHotels().add(hotel);
-            return hotel;
+        DataStorage.getInstance().getHotels().put(hotel.getId(), hotel);
+
+        return hotel;
         }
     }
 
     @Override
     public Hotel update(Hotel hotel) {
-        DataStorage.getInstance().getHotels().forEach(s -> {
-          if (s.getId() == hotel.getId()){
-              s.rewriteData(hotel);
-            }
-        });
+        //TODO remake it
+        DataStorage.getInstance().getHotels().put(hotel.getId(), hotel);
         return hotel;
     }
 
     @Override
-    public boolean delete(Hotel hotel) {
-        return DataStorage.getInstance().getHotels().remove(hotel);
-    }
-
-    public boolean bookRoom(Room aRoom, User user) {
-        return false;
-    }
-
-    public boolean removeBookRoom(Room aRoom) {
-        return false;
+    public Hotel delete(Hotel hotel) {
+       return DataStorage.getInstance().getHotels().remove(hotel.getId());
     }
 
     @Override
-    public Set<Hotel> getAll() {
+    public Map<Long, Hotel> getAll() {
         return DataStorage.getInstance().getHotels();
     }
 

@@ -5,19 +5,14 @@ import com.gojava.model.Room;
 import com.gojava.model.User;
 
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class RoomDaoImpl implements RoomCrud<Room> {
 	
-	private Set<Room> repositoryRooms;
-	private final String FILE_NAME = "rooms.db";
-
-	public RoomDaoImpl() {
-		repositoryRooms = new LinkedHashSet<>();
-	}
 
 	@Override
-	public Room add(Room entity) {
+	public Room create(Room entity) {
 		return null;
 	}
 
@@ -27,12 +22,12 @@ public class RoomDaoImpl implements RoomCrud<Room> {
 	}
 
 	@Override
-	public boolean delete(Room entity) {
-		return false;
+	public Room delete(Room entity) {
+		return entity;
 	}
 
 	@Override
-	public Set<Room> getAll() {
+	public Map<Long, Room> getAll() {
 		return null;
 	}
 

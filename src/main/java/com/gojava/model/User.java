@@ -11,23 +11,20 @@ import java.util.Set;
  * @version 1.0
  */
 
-public class User implements Serializable {
+public class User implements Serializable, HaveId {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private long id;
     private String firstName;
     private String lastName;
-    private Set<Room> rooms;
+    private Set<Long> ids;
 
     public User(String firstName, String lastName) {
         id = IdGenerator.getRandomId();
         this.firstName = firstName;
         this.lastName = lastName;
-        rooms = new HashSet<>();
+        ids = new HashSet<>();
     }
 
     public long getId() {
@@ -50,12 +47,12 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Set<Room> getRooms() {
-        return rooms;
+    public Set<Long> getRooms() {
+        return ids;
     }
 
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
+    public void setRooms(Set<Long> ids) {
+        this.ids = ids;
     }
 
     @Override
@@ -68,7 +65,7 @@ public class User implements Serializable {
         if (id != user.id) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        return rooms != null ? rooms.equals(user.rooms) : user.rooms == null;
+        return ids != null ? ids.equals(user.ids) : user.ids == null;
     }
 
     @Override
@@ -76,7 +73,7 @@ public class User implements Serializable {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (rooms != null ? rooms.hashCode() : 0);
+        result = 31 * result + (ids != null ? ids.hashCode() : 0);
         return result;
     }
 
@@ -86,7 +83,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", rooms=" + rooms +
+                ", room ids=" + ids.toArray().toString() +
                 '}';
     }
 }
