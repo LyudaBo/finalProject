@@ -1,11 +1,16 @@
 package com.gojava.model;
 
-import java.util.Set;
 
-public interface Crud<T> {
+import java.util.Map;
 
-    T add(T entity);
+public interface Crud<T extends HaveId> {
+
+    T create(T entity);
+
     T update(T entity);
-    boolean delete(T entity);
-    Set<T> getAll();
+
+    T delete(T entity);
+
+    Map<Long, T> getAll();
+
 }

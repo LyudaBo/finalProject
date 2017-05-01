@@ -7,6 +7,5 @@ import com.gojava.model.User;
 
 public interface HotelCrud<T extends Hotel> extends Crud<T> {
 
-    boolean removeBookRoom(Room aRoom);
-    boolean bookRoom(Room aRoom, User user);
+
 }
