@@ -23,7 +23,7 @@ public final class Utils {
             try{
                 return Integer.valueOf(line);}
             catch (NumberFormatException e){
-                return null;
+                return -1;
             }
         } catch (IOException e) {
             e.printStackTrace();

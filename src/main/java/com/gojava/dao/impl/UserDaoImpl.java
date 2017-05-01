@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserCrud<User> {
 
     @Override
     public User delete(User entity) {
-        return DataStorage.getInstance().getUsers().remove(entity);
+        return DataStorage.getInstance().getUsers().remove(entity.getId());
     }
 
     @Override

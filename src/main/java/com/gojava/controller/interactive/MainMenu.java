@@ -8,7 +8,7 @@ import com.gojava.service.impl.FileManagerImpl;
 import static com.gojava.dao.Utils.printBorder;
 import static com.gojava.dao.Utils.provideIntInputStream;
 
-public class MainMenu implements Interactive{
+public class MainMenu implements Interactive {
 
     private final static String FILE_NAME = "file.txt";
     private HotelsMenu hotelInteractive = new HotelsMenu(this);
@@ -20,13 +20,12 @@ public class MainMenu implements Interactive{
     @Override
     public void showMenu() {
         //TODO check why pops up exception stack trace
-        initializeDataStorage();
 
         printBorder();
         System.out.println("Main Menu");
         System.out.println("1) Hotels menu");
         System.out.println("2) Users Menu");
-        System.out.println("3) Exit" );
+        System.out.println("3) Exit");
         printBorder();
 
         Integer selectedItem = provideIntInputStream();
@@ -51,6 +50,11 @@ public class MainMenu implements Interactive{
                     break;
             }
         }
+    }
+
+    public void startGame() {
+        initializeDataStorage();
+        showMenu();
     }
 
     private void initializeDataStorage() {

@@ -134,7 +134,11 @@ public class UsersMenu implements Interactive {
         if (idUserString == null) {
             showMenu();
         } else {
-            idUser = Long.parseLong(idUserString);
+            try {
+                idUser = Long.parseLong(idUserString);
+            } catch (NumberFormatException e) {
+                return -1;
+            }
         }
         //TODO validate id
 
