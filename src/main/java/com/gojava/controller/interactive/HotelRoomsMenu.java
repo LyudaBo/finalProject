@@ -1,9 +1,8 @@
 package com.gojava.controller.interactive;
 
-import com.gojava.dao.HotelCrud;
 import com.gojava.model.Hotel;
 import com.gojava.model.Interactive;
-import com.gojava.service.impl.HotelServiceImpl;
+import com.gojava.service.impl.RoomServiceImpl;
 
 import static com.gojava.dao.Utils.printBorder;
 import static com.gojava.dao.Utils.provideIntInputStream;
@@ -11,13 +10,13 @@ import static com.gojava.dao.Utils.provideIntInputStream;
 /**
  *
  */
-public class HotelMenu implements Interactive {
+public class HotelRoomsMenu implements Interactive {
 
     private Hotel currentHotel;
     private Interactive previousMenu;
-    private HotelCrud<Hotel> hotelController = new HotelServiceImpl();
+    private RoomServiceImpl roomService = new RoomServiceImpl();
 
-    public HotelMenu(Hotel currentHotel, Interactive previousMenu) {
+    public HotelRoomsMenu(Hotel currentHotel, Interactive previousMenu) {
         this.currentHotel = currentHotel;
         this.previousMenu = previousMenu;
     }
@@ -30,7 +29,7 @@ public class HotelMenu implements Interactive {
         System.out.println("2) Update room");
         System.out.println("3) Delete room");
         System.out.println("4) Show all rooms");
-        System.out.println("5) back to hotels menu");
+        System.out.println("5) Back to hotels menu");
         printBorder();
 
         Integer selectedItem = provideIntInputStream();
@@ -76,7 +75,8 @@ public class HotelMenu implements Interactive {
     }
 
     private void showAllRooms() {
-        //TODO do it
+        // todo dodelat
+        roomService.getAllHotelRooms(currentHotel).forEach(System.out::println);
     }
 
 }

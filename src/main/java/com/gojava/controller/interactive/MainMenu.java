@@ -13,9 +13,8 @@ public class MainMenu implements Interactive{
     private final static String FILE_NAME = "file.txt";
     private HotelsMenu hotelInteractive = new HotelsMenu(this);
     private UsersMenu usersMenu = new UsersMenu(this);
-    private BookingMenu bookingMenu = new BookingMenu(this);
 
-    FileManager fileManager = new FileManagerImpl();
+    private FileManager fileManager = new FileManagerImpl();
 
 
     @Override
@@ -27,8 +26,7 @@ public class MainMenu implements Interactive{
         System.out.println("Main Menu");
         System.out.println("1) Hotels menu");
         System.out.println("2) Users Menu");
-        System.out.println("3) Booking menu");
-        System.out.println("4) Exit" );
+        System.out.println("3) Exit" );
         printBorder();
 
         Integer selectedItem = provideIntInputStream();
@@ -45,8 +43,6 @@ public class MainMenu implements Interactive{
                     usersMenu.showMenu();
                     break;
                 case 3:
-                    bookingMenu.showMenu();
-                case 4:
                     fileManager.writeData(DataStorage.getInstance(), FILE_NAME);
                     System.exit(0);
                     break;
