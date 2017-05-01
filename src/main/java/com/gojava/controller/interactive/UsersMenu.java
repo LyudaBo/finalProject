@@ -20,6 +20,9 @@ public class UsersMenu implements Interactive {
         this.previousMenu = interactive;
     }
 
+    private BookingMenu bookingMenu;
+
+
     @Override
     public void showMenu() {
         printBorder();
@@ -28,7 +31,8 @@ public class UsersMenu implements Interactive {
         System.out.println("2) Update user");
         System.out.println("3) Delete user");
         System.out.println("4) Show all users");
-        System.out.println("5) Back to main menu");
+        System.out.println("5) Booking menu");
+        System.out.println("6) Back to main menu");
         printBorder();
 
         Integer selectedItem = provideIntInputStream();
@@ -52,6 +56,9 @@ public class UsersMenu implements Interactive {
                     showMenu();
                     break;
                 case 5:
+                    toBookingMenu();
+                    break;
+                case 6:
                     previousMenu.showMenu();
                     break;
                 default:
@@ -79,11 +86,9 @@ public class UsersMenu implements Interactive {
 
     private void updateUser() {
 
-        showAllUsers();
         Long usersId = enterUsersId();
 
         User userToUpdate = userService.getAll().get(usersId);
-
 
         if (userToUpdate == null) {
             System.out.println("User with this id has't been found");
@@ -99,11 +104,9 @@ public class UsersMenu implements Interactive {
     }
 
     private void deleteUser() {
-        showAllUsers();
 
         Long idUser = enterUsersId();
         User userToDelete = userService.getAll().get(idUser);
-
 
         if (userToDelete == null) {
             System.out.println("User with this id has't been found");
@@ -115,6 +118,15 @@ public class UsersMenu implements Interactive {
 
     }
 
+    private void toBookingMenu() {
+        long usersId = enterUsersId();
+        User userToBook = userService.getAll().get(usersId);
+
+
+        bookingMenu = new BookingMenu(userToBook, this);
+        bookingMenu.showMenu();
+    }
+
     private long enterUsersId() {
         Long idUser = null;
 
@@ -124,6 +136,8 @@ public class UsersMenu implements Interactive {
         } else {
             idUser = Long.parseLong(idUserString);
         }
+        //TODO validate id
+
         return idUser;
     }
 }

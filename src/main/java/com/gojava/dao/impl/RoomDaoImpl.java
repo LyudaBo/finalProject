@@ -1,15 +1,19 @@
 package com.gojava.dao.impl;
 
+import com.gojava.dao.HotelCrud;
 import com.gojava.dao.RoomCrud;
+import com.gojava.model.Hotel;
 import com.gojava.model.Room;
 import com.gojava.model.User;
 
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class RoomDaoImpl implements RoomCrud<Room> {
-	
+
+	private HotelCrud<Hotel> hotelDao = new HotelDaoImpl();
 
 	@Override
 	public Room create(Room entity) {
@@ -28,7 +32,11 @@ public class RoomDaoImpl implements RoomCrud<Room> {
 
 	@Override
 	public Map<Long, Room> getAll() {
-		return null;
+		Map<Long, Room> map = new HashMap<>();
+		hotelDao.getAll().values()
+				.forEach(hotel -> hotel.getRooms()
+						.forEach(room -> map.put(room.getId(), room)));
+		return map;
 	}
 
 	@Override

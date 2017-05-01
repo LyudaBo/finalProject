@@ -14,8 +14,8 @@ import static com.gojava.dao.Utils.*;
 public class HotelsMenu implements Interactive {
 
     private Interactive previousMenu;
-    private HotelMenu hotelMenu;
-    private HotelCrud<Hotel> hotelController = new HotelServiceImpl();
+    private HotelRoomsMenu hotelRoomsMenu;
+    private HotelCrud<Hotel> hotelService = new HotelServiceImpl();
 
     public HotelsMenu(Interactive interactive) {
         this.previousMenu = interactive;
@@ -80,7 +80,7 @@ public class HotelsMenu implements Interactive {
                 city
         );
 
-        Hotel addedHotel = hotelController.create(hotel);
+        Hotel addedHotel = hotelService.create(hotel);
         System.out.println("added new hotel: " + addedHotel.toString());
 
         showMenu();
@@ -100,15 +100,8 @@ public class HotelsMenu implements Interactive {
 
     public void showAllHotels() {
         //TODO remake
-//        Set<Hotel> hotels = hotelController.getAll();
-//
-//        if (hotels.isEmpty()) {
-//            System.out.println("no hotels");
-//        } else {
-//            for (Hotel hotel : hotelController.getAll()) {
-//                System.out.println("hotel: " + hotel.toString());
-//            }
-//        }
+        hotelService.getAll().values().forEach(System.out::println);
+
         showMenu();
     }
 
@@ -119,7 +112,7 @@ public class HotelsMenu implements Interactive {
         Hotel hotel = null; //TODO find this hotel
 
 
-        hotelMenu = new HotelMenu(hotel, this);
-        hotelMenu.showMenu();
+        hotelRoomsMenu = new HotelRoomsMenu(hotel, this);
+        hotelRoomsMenu.showMenu();
     }
 }

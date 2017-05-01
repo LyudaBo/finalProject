@@ -14,14 +14,17 @@ public final class Utils {
     }
 
     public static Integer provideIntInputStream() {
-        //TODO validate string
         System.out.print("Select choice (confirm Enter): ");
         String line;
-        BufferedReader br = null;
+        BufferedReader br;
         try {
             br = new BufferedReader(new InputStreamReader(System.in));
             line = br.readLine();
-            return Integer.valueOf(line);
+            try{
+                return Integer.valueOf(line);}
+            catch (NumberFormatException e){
+                return null;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +33,7 @@ public final class Utils {
 
     public static String provideStringInputStream(String enterData) {
         System.out.print(enterData);
-        BufferedReader br = null;
+        BufferedReader br;
         try {
             br = new BufferedReader(new InputStreamReader(System.in));
             return br.readLine();
